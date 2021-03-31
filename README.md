@@ -17,8 +17,11 @@ scenario -> a developer wants to enforce an API contract for two or more classes
 In the API contract, some methods are public but also,
 some methods  should be protected but he currently can't express this. 
 decision A: he choose to make that method public which allow him to move it in the interface. This is semantically wrong, unsafe security wise and reduce the signal to noise ratio on autocomplete (and this is even worse for a library).
+
 decision B: he choose to exclude such methods from the interface which make it lose the crucial benefits specified above.
+
 decision C: he determine that without those methods the interface doesn't make sense as a whole anymore semantically and therefore choose to delete the interface which reduce the quality of its program even more.
+
 decision D: he workaround the problem by transforming its interface into an abstract class which is semantically inferior (in this case no need of implementations) and crucially prevents OOP design (no multiple inheritance is possible), this is not future proof at all and is often not even an option.
 
 // doesn't a public method in an interface force the implementing class to also share that method with the rest of the world? If an interface is being used to make the internals of an API more modular it doesn't mean that suddenly the developer wants to expose its internals to the rest of the world. With this limitation a method that has an implementation and is intended to be package-protected (default) is forced to become public because of the interface it is complying to.
